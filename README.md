@@ -1,5 +1,5 @@
 # kode-frontend
-Test task
+Test project
 
 ## Tasks
 1. project setup
