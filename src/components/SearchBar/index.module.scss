@@ -1,0 +1,66 @@
+@import "../../styles/colors";
+
+#search {
+  .title {
+    padding: 0 8px 18px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 28px;
+    color: $black-russian;
+  }
+  .search_input {
+    > input[type="text"] {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+      border: none;
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      outline: transparent;
+      color: $black-russian;
+      caret-color: $han-purple;
+      background-color: $ghost-white;
+      &::placeholder {
+        color: $ghost;
+        opacity: 1;
+      }
+      &:focus {
+        + i {
+          background: url("./../../styles/svg/searchOnFocus.svg") no-repeat
+            center center;
+          background-size: 20px 20px;
+        }
+        &::placeholder {
+          color: transparent;
+        }
+      }
+    }
+    > button.filter_button {
+      width: 34px;
+      padding: 0 14px 0 0;
+      margin: 0;
+      border: none;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      background-color: $ghost-white;
+      cursor: default;
+      > i {
+        width: 20px;
+        margin-right: 0;
+        cursor: pointer;
+      }
+    }
+  }
+  .icon {
+    opacity: 1;
+  }
+  .searchIcon {
+    background: url("./../../styles/svg/search.svg") no-repeat center center;
+    background-size: 20px 20px;
+  }
+  .filterIcon {
+    background: url("./../../styles/svg/filter.svg") no-repeat center center;
+  }
+}
