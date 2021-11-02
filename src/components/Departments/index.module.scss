@@ -1,0 +1,50 @@
+@import "../../styles/colors";
+
+#departments {
+  margin-top: 14px;
+  .departments_tabs {
+    > div {
+      a {
+        font-family: "Inter";
+        padding: 8px 12px;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 15px;
+        color: $santas-grey;
+        opacity: 1;
+      }
+      a:first-child {
+        margin-left: 16px;
+      }
+    }
+    > div:first-child {
+      margin-left: -16px;
+      margin-right: -16px;
+      margin-bottom: 0;
+      border: none;
+    }
+    > div:last-child {
+      padding: 0;
+      margin-top: 2px;
+      border: none;
+      border-top: 1px solid $ghost;
+      box-shadow: none;
+      border-radius: 0;
+      margin-left: -16px;
+      margin-right: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+}
+:global(.ui.secondary.pointing.menu > a.active.item) {
+  color: $black-russian !important;
+  font-weight: 600 !important;
+  border-color: $han-purple !important;
+}
+:global(.ui.secondary.pointing.menu > a.item:active) {
+  border-color: rgba(89, 68, 158, 0.6) !important;
+}
+:global(.ui.secondary.pointing.menu > a.item:hover) {
+  font-weight: 600 !important;
+}
