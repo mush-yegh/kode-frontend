@@ -1,7 +1,7 @@
 import { MODE } from "./../constants";
 
 export const isDev = () => {
-  return process.env.NODE_ENV === MODE.dev;
+  return process.env.NODE_ENV === MODE.prod;
 };
 
 export const API_URL =

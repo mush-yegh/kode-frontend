@@ -1,3 +1,4 @@
+import { Redirect, Route, Switch } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import Departments from "../Departments";
 import { Container } from "semantic-ui-react";
@@ -7,8 +8,19 @@ function App() {
   return (
     <div id={styles.app_wrapper}>
       <Container fluid>
-        <SearchBar />
-        <Departments />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <>
+                <SearchBar />
+                <Departments />
+              </>
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
       </Container>
     </div>
   );
