@@ -1,6 +1,11 @@
 import criticalError from "./../styles/svg/criticalError.png";
 import searchError from "./../styles/svg/searchError.png";
 
+export const MODE = {
+  dev: "development",
+  prod: "production",
+};
+
 export const DEPARTMENTS = [
   "Все",
   "Designers",

@@ -14,7 +14,7 @@ const panes = DEPARTMENTS.map((dep) => ({
 }));
 
 function Departments() {
-  const bool = false;
+  const bool = true;
   return (
     <div id={styles.departments}>
       {bool && (
