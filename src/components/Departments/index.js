@@ -1,4 +1,5 @@
 import Workers from "../Workers";
+import Error from "../Error";
 import { DEPARTMENTS } from "../../constants";
 import { Tab } from "semantic-ui-react";
 import styles from "./index.module.scss";
@@ -13,13 +14,17 @@ const panes = DEPARTMENTS.map((dep) => ({
 }));
 
 function Departments() {
+  const bool = false;
   return (
     <div id={styles.departments}>
-      <Tab
-        className={styles.departments_tabs}
-        menu={{ secondary: true, pointing: true }}
-        panes={panes}
-      />
+      {bool && (
+        <Tab
+          className={styles.departments_tabs}
+          menu={{ secondary: true, pointing: true }}
+          panes={panes}
+        />
+      )}
+      {!bool && <Error />}
     </div>
   );
 }
