@@ -12,7 +12,7 @@ function App() {
           <Route exact path="/">
             <HomeScreen />
           </Route>
-          <Route path="/profile">
+          <Route exact path="/profile">
             <Profile />
           </Route>
           <Redirect to="/" />

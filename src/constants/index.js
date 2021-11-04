@@ -7,12 +7,19 @@ export const MODE = {
 };
 
 export const DEPARTMENTS = [
-  "Все",
-  "Designers",
-  "Analysts",
-  "Managers",
-  "iOS",
-  "Android",
+  { name: "all", title: "Все", isTabItem: true },
+  { name: "design", title: "Designers", isTabItem: true },
+  { name: "analytics", title: "Analysts", isTabItem: true },
+  { name: "management", title: "Managers", isTabItem: true },
+  { name: "ios", title: "iOS", isTabItem: true },
+  { name: "android", title: "Android", isTabItem: true },
+  { name: "qa", title: "QA", isTabItem: false },
+  { name: "back_office", title: "Бэк-офис", isTabItem: false },
+  { name: "frontend", title: "frontend", isTabItem: false },
+  { name: "hr", title: "HR", isTabItem: false },
+  { name: "pr", title: "PR", isTabItem: false },
+  { name: "backend", title: "Backend", isTabItem: false },
+  { name: "support", title: "Support", isTabItem: false },
 ];
 
 export const ERROR_SCREEN_DATA = {
@@ -34,4 +41,9 @@ export const ERROR_SCREEN_DATA = {
       },
     },
   },
+};
+
+export const ERROR_TYPE = {
+  critical: "criticalError",
+  empty: "emptySearch",
 };
