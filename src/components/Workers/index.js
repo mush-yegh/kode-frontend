@@ -1,15 +1,13 @@
 import Worker from "../Worker";
 import styles from "./index.module.scss";
 
-import { mockData } from "./mockData";
-
-const Workers = ({ department }) => {
+const Workers = ({ workers }) => {
   return (
     <div id={styles.workers}>
-      {mockData.map((item) => {
+      {workers.map((worker) => {
         return (
-          <div key={item.id}>
-            <Worker worker={item} />
+          <div key={worker.id}>
+            <Worker worker={worker} />
           </div>
         );
       })}
