@@ -4,13 +4,15 @@ import styles from "./index.module.scss";
 const Workers = ({ workers }) => {
   return (
     <div id={styles.workers}>
-      {workers.map((worker) => {
-        return (
-          <div key={worker.id}>
-            <Worker worker={worker} />
-          </div>
-        );
-      })}
+      {workers
+        .filter((worker) => worker.isInSelectedDep)
+        .map((worker) => {
+          return (
+            <div key={worker.id}>
+              <Worker worker={worker} />
+            </div>
+          );
+        })}
     </div>
   );
 };
