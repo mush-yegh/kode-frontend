@@ -1,7 +1,7 @@
 import Worker from "../Worker";
 import styles from "./index.module.scss";
 
-const Workers = ({ workers }) => {
+const Workers = ({ workers, isBirthDateVisible }) => {
   return (
     <div id={styles.workers}>
       {workers
@@ -9,7 +9,7 @@ const Workers = ({ workers }) => {
         .map((worker) => {
           return (
             <div key={worker.id}>
-              <Worker worker={worker} />
+              <Worker worker={{ ...worker, isBirthDateVisible }} />
             </div>
           );
         })}

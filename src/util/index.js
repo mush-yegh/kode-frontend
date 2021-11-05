@@ -8,7 +8,7 @@ import {
   addYears,
 } from "date-fns";
 import ru from "date-fns/locale/ru";
-import { SORT_BY } from "../constants";
+import { SORT_BY, MONTH_SYMBOLS_COUNT } from "../constants";
 
 const dateFormatter = (d) => {
   return format(new Date(d), "d MMMM yyyy", { locale: ru });
@@ -68,3 +68,6 @@ export const compareByClosestBirthday = (
   }
   return 0;
 };
+
+export const cutBirthDate = (date) =>
+  date.substring(0, date.indexOf(" ") + MONTH_SYMBOLS_COUNT + 1);
