@@ -4,6 +4,8 @@
   padding-top: 10px;
   height: calc(100% - 140px);
   overflow-y: scroll;
+  scrollbar-color: $white $white;
+  scrollbar-width: thin;
 
   > div:last-child {
     margin-bottom: 12px;
