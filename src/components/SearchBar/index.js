@@ -31,7 +31,14 @@ function SearchBar({ checkedSortStrategy, handleSortByCange }) {
           open={isOpen}
           trigger={
             <Button className={styles.filter_button}>
-              <Icon className={cs(styles.sortIcon, styles.icon)} />
+              <Icon
+                className={cs({
+                  [styles.icon]: true,
+                  [styles.sortIcon]: checkedSortStrategy === SORT_BY[0].value,
+                  [styles.sortIconPurple]:
+                    checkedSortStrategy === SORT_BY[1].value,
+                })}
+              />
             </Button>
           }
         >
