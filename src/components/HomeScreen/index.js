@@ -5,11 +5,13 @@ import { DEPARTMENTS, ERROR_TYPE } from "../../constants";
 import TopAppBar from "../TopAppBar";
 import Workers from "../Workers";
 import Error from "./../Error";
+import { compareByFullName, compareByClosestBirthday } from "../../util";
+import { SORT_BY } from "./../../constants";
 
 const initialHomeState = {
   workersList: null,
   searchTherm: "",
-  orderBy: "name", //TO Do -move to constants
+  sortBy: SORT_BY[0].value,
   selectedDepartment: DEPARTMENTS[0].name,
 };
 
@@ -28,26 +30,38 @@ function HomeScreen() {
 
   const [homeState, setHomeState] = useState(initialHomeState);
 
-  //update local state when request fulfilled
+  // update local state when data successfully retrieved
   useEffect(() => {
-    //TO DO - should sort depending on "orderBy"
-    setHomeState((prevState) => {
-      return { ...prevState, workersList };
-    });
+    workersList &&
+      setHomeState((prevState) => {
+        return {
+          ...prevState,
+          workersList,
+        };
+      });
   }, [workersList]);
 
-  // if 'All' is chosen(DEPARTMENTS[0]) no filtering is required,
-  // otherwise filter by department name and then set local state
+  // update each worker's 'isInSelectedDep' property depending on selected department
   const handleDepartmentChange = (department) => {
-    const updatedList =
-      department === DEPARTMENTS[0].name
-        ? workersList
-        : workersList.filter((worker) => worker.department === department);
-
+    const isAllSelected = department === initialHomeState.selectedDepartment;
+    const updatedList = homeState.workersList.map((worker) => ({
+      ...worker,
+      isInSelectedDep: isAllSelected || worker.department === department,
+    }));
     setHomeState({
       ...homeState,
       workersList: updatedList,
       selectedDepartment: department,
+    });
+  };
+
+  const handleSortByCange = (value) => {
+    const comparer =
+      value === SORT_BY[0].value ? compareByFullName : compareByClosestBirthday;
+    const updatedList = homeState.workersList.sort(comparer);
+    setHomeState({
+      ...homeState,
+      workersList: updatedList,
     });
   };
 
@@ -56,6 +70,7 @@ function HomeScreen() {
       <TopAppBar
         selectedDepartment={homeState.selectedDepartment}
         handleDepartmentChange={handleDepartmentChange}
+        handleSortByCange={handleSortByCange}
       />
       {/* {isLoading&&<Placeholder/>} */}
       {/* if result is empty on tab change */}

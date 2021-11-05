@@ -1,5 +1,6 @@
 import criticalError from "./../styles/svg/criticalError.png";
 import searchError from "./../styles/svg/searchError.png";
+import { compareByFullName, compareByClosestBirthday } from "../util";
 
 export const MODE = {
   dev: "development",
@@ -47,3 +48,20 @@ export const ERROR_TYPE = {
   critical: "criticalError",
   empty: "emptySearch",
 };
+
+export const SORT_BY = [
+  {
+    value: "alphabetically",
+    name: "sortWorkers",
+    label: "По алфавиту",
+    comparer: compareByFullName,
+  },
+  {
+    value: "closestBirthday",
+    name: "sortWorkers",
+    label: "По дню рождения",
+    comparer: compareByClosestBirthday,
+  },
+];
+
+export const MONTH_SYMBOLS_COUNT = 3;

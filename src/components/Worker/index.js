@@ -1,25 +1,39 @@
+import { MONTH_SYMBOLS_COUNT } from "./../../constants";
 import { Image } from "semantic-ui-react";
 import styles from "./index.module.scss";
 
 const Worker = ({ worker }) => {
-  return (
-    <div key={worker.id} id={styles.worker}>
-      <div className={styles.main_info}>
-        <Image src={worker.avatarUrl} circular />
+  const {
+    id,
+    avatarUrl,
+    firstName,
+    lastName,
+    userTag,
+    position,
+    displayBirthdate,
+  } = worker;
 
+  return (
+    <div key={id} id={styles.worker}>
+      <div className={styles.main_info}>
+        <Image src={avatarUrl} circular />
         <div className={styles.main_data}>
           <div className={styles.name_nick}>
             <div className={styles.full_name}>
-              {worker.firstName} {worker.lastName}
+              {firstName} {lastName}
             </div>
-            <div className={styles.nick}>{worker.userTag}</div>
+            <div className={styles.nick}>{userTag}</div>
           </div>
 
-          <div className={styles.position}>{worker.position}</div>
+          <div className={styles.position}>{position}</div>
         </div>
       </div>
-
-      <div className={styles.birthdate}>{worker.birthday}</div>
+      <div className={styles.birthdate}>
+        {displayBirthdate.substring(
+          0,
+          displayBirthdate.indexOf(" ") + MONTH_SYMBOLS_COUNT + 1
+        )}
+      </div>
     </div>
   );
 };

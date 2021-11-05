@@ -2,7 +2,7 @@ import cs from "classnames";
 import { Button, Icon, Input } from "semantic-ui-react";
 import styles from "./index.module.scss";
 
-function SearchBar() {
+function SearchBar({ handleSortByCange }) {
   return (
     <div id={styles.search}>
       <div className={styles.title}>Поиск</div>

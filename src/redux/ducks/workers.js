@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../../config";
+import { prepareWorkersList } from "../../util";
 
 export const WORKERS_LIST_REQUEST = "kode/workers/WORKERS_LIST_REQUEST";
 export const WORKERS_LIST_RESPONSE = "kode/workers/WORKERS_LIST_RESPONSE";
@@ -35,7 +36,7 @@ export default function reducer(state = initialState, action) {
     case WORKERS_LIST_RESPONSE:
       return {
         ...state,
-        workersList: action.payload,
+        workersList: prepareWorkersList(action.payload),
         isLoading: false,
         error: null,
       };
