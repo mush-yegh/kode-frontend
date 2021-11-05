@@ -22,22 +22,22 @@ export const prepareWorkersList = (workersList) => {
       isInSelectedDep: true,
       displayBirthdate: dateFormatter(w.birthday),
     }))
-    .sort(SORT_BY[1].comparer);
+    .sort(SORT_BY[0].comparer);
 };
 
 export const compareByFullName = (a, b) => {
   const { firstName: aFirstName, lastName: aLastName } = a;
   const { firstName: bFirstName, lastName: bLastName } = b;
-  if (aFirstName > bFirstName) {
+  if (aFirstName < bFirstName) {
     return -1;
   }
-  if (aFirstName < bFirstName) {
+  if (aFirstName > bFirstName) {
     return 1;
   }
-  if (aLastName > bLastName) {
+  if (aLastName < bLastName) {
     return -1;
   }
-  if (aLastName < bLastName) {
+  if (aLastName > bLastName) {
     return 1;
   }
   return 0;

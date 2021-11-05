@@ -61,6 +61,7 @@ function HomeScreen() {
     const updatedList = homeState.workersList.sort(comparer);
     setHomeState({
       ...homeState,
+      sortBy: value,
       workersList: updatedList,
     });
   };
@@ -70,6 +71,7 @@ function HomeScreen() {
       <TopAppBar
         selectedDepartment={homeState.selectedDepartment}
         handleDepartmentChange={handleDepartmentChange}
+        checkedSortStrategy={homeState.sortBy}
         handleSortByCange={handleSortByCange}
       />
       {/* {isLoading&&<Placeholder/>} */}
