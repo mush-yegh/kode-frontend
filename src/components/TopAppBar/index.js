@@ -4,11 +4,15 @@ import DepartmentsTab from "../DepartmentsTab";
 function TopAppBar({
   selectedDepartment,
   handleDepartmentChange,
+  checkedSortStrategy,
   handleSortByCange,
 }) {
   return (
     <>
-      <SearchBar handleSortByCange={handleSortByCange} />
+      <SearchBar
+        checkedSortStrategy={checkedSortStrategy}
+        handleSortByCange={handleSortByCange}
+      />
       <DepartmentsTab
         selectedDepartment={selectedDepartment}
         handleDepartmentChange={handleDepartmentChange}

@@ -63,7 +63,103 @@
     background: url("./../../styles/svg/search.svg") no-repeat center center;
     background-size: 20px 20px;
   }
-  .filterIcon {
-    background: url("./../../styles/svg/filter.svg") no-repeat center center;
+  .sortIcon {
+    background: url("./../../styles/svg/sort.svg") no-repeat center center;
+  }
+}
+
+.modal {
+  border-radius: 20px;
+  > div:first-child {
+    > div:first-child {
+      text-align: center;
+    }
+  }
+  > div:last-child {
+    .radio_row {
+      padding-top: 12px;
+      padding-bottom: 16px;
+      text-align: left;
+
+      > div {
+        height: 20px;
+        line-height: 20px;
+        > label {
+          padding-left: 33px;
+          font-family: "Inter";
+          font-size: 16px;
+          line-height: 20px;
+          font-weight: 500;
+          color: $black-russian;
+        }
+        > label::before {
+          top: 0 !important;
+          width: 20px !important;
+          height: 20px !important;
+          border: 2px solid $han-purple !important;
+        }
+        > label::after {
+          background-color: transparent !important;
+        }
+      }
+      .checked_radio {
+        > label::before {
+          border: 6px solid $han-purple !important;
+        }
+      }
+    }
+  }
+}
+:global(.ui.dimmer) {
+  background-color: rgba(5, 5, 16, 0.16) !important;
+}
+
+:global(.ui.mini.modal) {
+  border-radius: 20px;
+  > div:first-child {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+  }
+  > div:last-child {
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+  }
+  > div {
+    padding-top: 24px;
+    padding-right: 18px;
+    padding-bottom: 17px;
+    padding-left: 18px;
+    border: none;
+
+    > div:first-child {
+      position: relative;
+      > span:first-child {
+        font-family: Inter;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
+        color: $black-russian;
+      }
+      > span:last-child {
+        position: absolute;
+        right: 0;
+        width: 24px;
+        height: 100%;
+        line-height: 24px;
+        border-radius: 12px;
+        background-color: $ghost-white;
+        background-image: url("./../../styles/svg/closeIcon.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  :global(.ui.mini.modal) {
+    width: 373px !important;
+    margin: 0;
   }
 }

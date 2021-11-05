@@ -1,8 +1,12 @@
+import { useState } from "react";
 import cs from "classnames";
-import { Button, Icon, Input } from "semantic-ui-react";
+import { Button, Icon, Input, Modal, Radio } from "semantic-ui-react";
+import { SORT_BY } from "../../constants";
 import styles from "./index.module.scss";
 
-function SearchBar({ handleSortByCange }) {
+function SearchBar({ checkedSortStrategy, handleSortByCange }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div id={styles.search}>
       <div className={styles.title}>Поиск</div>
@@ -18,12 +22,48 @@ function SearchBar({ handleSortByCange }) {
       >
         <input />
         <Icon className={cs(styles.searchIcon, styles.icon)} />
-        <Button
-          onClick={() => console.log("Button clicked")}
-          className={styles.filter_button}
+
+        <Modal
+          className={styles.modal}
+          size={"mini"}
+          onClose={() => setIsOpen(false)}
+          onOpen={() => setIsOpen(true)}
+          open={isOpen}
+          trigger={
+            <Button className={styles.filter_button}>
+              <Icon className={cs(styles.sortIcon, styles.icon)} />
+            </Button>
+          }
         >
-          <Icon className={cs(styles.filterIcon, styles.icon)} />
-        </Button>
+          <Modal.Header>
+            <div>
+              <span>Сортировка</span>
+              <span onClick={() => setIsOpen(false)}></span>
+            </div>
+          </Modal.Header>
+          <Modal.Content>
+            {SORT_BY.map((item) => {
+              const { value, name, label } = item;
+              return (
+                <div key={value} className={styles.radio_row}>
+                  <Radio
+                    label={label}
+                    name={name}
+                    value={value}
+                    checked={checkedSortStrategy === value}
+                    className={cs({
+                      [styles.checked_radio]: checkedSortStrategy === value,
+                    })}
+                    onChange={(e, { value }) => {
+                      handleSortByCange(value);
+                      setIsOpen(false);
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </Modal.Content>
+        </Modal>
       </Input>
     </div>
   );
