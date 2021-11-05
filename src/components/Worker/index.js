@@ -1,4 +1,4 @@
-import { MONTH_SYMBOLS_COUNT } from "./../../constants";
+import { cutBirthDate } from "../../util";
 import { Image } from "semantic-ui-react";
 import styles from "./index.module.scss";
 
@@ -10,6 +10,7 @@ const Worker = ({ worker }) => {
     lastName,
     userTag,
     position,
+    isBirthDateVisible,
     displayBirthdate,
   } = worker;
 
@@ -28,12 +29,10 @@ const Worker = ({ worker }) => {
           <div className={styles.position}>{position}</div>
         </div>
       </div>
-      <div className={styles.birthdate}>
-        {displayBirthdate.substring(
-          0,
-          displayBirthdate.indexOf(" ") + MONTH_SYMBOLS_COUNT + 1
-        )}
-      </div>
+
+      {isBirthDateVisible && (
+        <div className={styles.birthdate}>{cutBirthDate(displayBirthdate)}</div>
+      )}
     </div>
   );
 };

@@ -76,7 +76,12 @@ function HomeScreen() {
       />
       {/* {isLoading&&<Placeholder/>} */}
       {/* if result is empty on tab change */}
-      {homeState.workersList && <Workers workers={homeState.workersList} />}
+      {homeState.workersList && (
+        <Workers
+          workers={homeState.workersList}
+          isBirthDateVisible={homeState.sortBy === SORT_BY[1].value}
+        />
+      )}
       {error && <Error page={ERROR_TYPE.critical} />}
     </>
   );
