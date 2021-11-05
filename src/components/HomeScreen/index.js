@@ -66,6 +66,10 @@ function HomeScreen() {
     });
   };
 
+  const isWorkersListInitialized = homeState && homeState.workersList;
+  const hasMatchingData =
+    isWorkersListInitialized &&
+    homeState.workersList.some((w) => w.isInSelectedDep); // Add later || isInSearch
   return (
     <>
       <TopAppBar
@@ -74,14 +78,22 @@ function HomeScreen() {
         checkedSortStrategy={homeState.sortBy}
         handleSortByCange={handleSortByCange}
       />
+
       {/* {isLoading&&<Placeholder/>} */}
-      {/* if result is empty on tab change */}
-      {homeState.workersList && (
+
+      {isWorkersListInitialized && hasMatchingData && (
         <Workers
           workers={homeState.workersList}
           isBirthDateVisible={homeState.sortBy === SORT_BY[1].value}
         />
       )}
+
+      {/* if no matching data exists */}
+      {isWorkersListInitialized && !hasMatchingData && (
+        <Error page={ERROR_TYPE.empty} />
+      )}
+
+      {/* server error */}
       {error && <Error page={ERROR_TYPE.critical} />}
     </>
   );
