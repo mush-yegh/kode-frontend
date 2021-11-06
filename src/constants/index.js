@@ -65,3 +65,8 @@ export const SORT_BY = [
 ];
 
 export const MONTH_SYMBOLS_COUNT = 3;
+
+export const ROUTES = {
+  home: { pathname: "/", class_name: "home_screen" },
+  profile: { pathname: "/profile", class_name: "profile" },
+};

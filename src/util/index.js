@@ -1,18 +1,33 @@
 import {
+  isPast,
   format,
   setYear,
   getYear,
-  isPast,
-  differenceInDays,
   endOfDay,
   addYears,
+  formatDuration,
+  differenceInDays,
+  differenceInYears,
 } from "date-fns";
 import ru from "date-fns/locale/ru";
 import { SORT_BY, MONTH_SYMBOLS_COUNT } from "../constants";
 
-const dateFormatter = (d) => {
+const formatDate = (d) => {
   return format(new Date(d), "d MMMM yyyy", { locale: ru });
 };
+
+const todaysDate = Date.now();
+export const formatAge = (d) => {
+  return formatDuration(
+    {
+      years: differenceInYears(todaysDate, new Date(d)),
+    },
+    { locale: ru }
+  );
+};
+
+export const cutBirthDate = (date) =>
+  date.substring(0, date.indexOf(" ") + MONTH_SYMBOLS_COUNT + 1);
 
 export const prepareWorkersList = (workersList) => {
   return workersList
@@ -20,7 +35,7 @@ export const prepareWorkersList = (workersList) => {
       ...w,
       isInSearch: true,
       isInSelectedDep: true,
-      displayBirthdate: dateFormatter(w.birthday),
+      displayBirthdate: formatDate(w.birthday),
     }))
     .sort(SORT_BY[0].comparer);
 };
@@ -43,7 +58,6 @@ export const compareByFullName = (a, b) => {
   return 0;
 };
 
-const todaysDate = Date.now();
 const currentYear = getYear(todaysDate);
 
 export const compareByClosestBirthday = (
@@ -69,5 +83,21 @@ export const compareByClosestBirthday = (
   return 0;
 };
 
-export const cutBirthDate = (date) =>
-  date.substring(0, date.indexOf(" ") + MONTH_SYMBOLS_COUNT + 1);
+export const formatPhoneNumber = (n) => {
+  const match = n.replace(/\D/g, "").match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/);
+  if (match) {
+    const intlCode = "+7 ";
+    return [
+      intlCode,
+      "(",
+      match[1],
+      ") ",
+      match[2],
+      " ",
+      match[3],
+      " ",
+      match[4],
+    ].join("");
+  }
+  return n;
+};
