@@ -1,50 +1,11 @@
 @import "../../styles/colors";
 
 #worker {
-  padding-top: 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  .main_info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    img {
-      width: 72px;
-      height: 72px;
-    }
-    .main_data {
-      margin-left: 16px;
-      .name_nick {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        .full_name {
-          font-size: 16px;
-          font-weight: 500;
-          color: $black-russian;
-          line-height: 20px;
-          margin-right: 4px;
-        }
-        .nick {
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 18px;
-          color: $santas-grey;
-          text-transform: lowercase;
-        }
-      }
-      .position {
-        margin-top: 3px;
-        font-size: 13px;
-        line-height: 16px;
-        color: $gun-powder;
-        font-weight: normal;
-      }
-    }
-  }
+  padding-top: 12px;
   .birthdate {
     margin-right: 4px;
     padding: 0;

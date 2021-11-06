@@ -1,0 +1,83 @@
+@import "../../../styles/colors";
+
+#worker_info {
+  .main_info {
+    &.home_screen {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      img {
+        height: 72px;
+        width: 72px;
+      }
+      .name_and_position {
+        margin-left: 16px;
+        .name_nick {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          .full_name {
+            font-size: 16px;
+            font-weight: 500;
+            color: $black-russian;
+            line-height: 20px;
+            margin-right: 4px;
+          }
+          .nick {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18px;
+            color: $santas-grey;
+            text-transform: lowercase;
+          }
+        }
+        .position {
+          margin-top: 3px;
+          font-size: 13px;
+          line-height: 16px;
+          color: $gun-powder;
+        }
+      }
+    }
+    &.profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        height: 104px;
+      }
+      .name_and_position {
+        margin-left: 0;
+
+        .name_nick {
+          display: flex;
+          margin-top: 24px;
+          margin-bottom: 12px;
+          .full_name {
+            font-size: 24px;
+            font-weight: 700;
+            color: $black-russian;
+            line-height: 28px;
+            margin-right: 4px;
+          }
+          .nick {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 28px;
+            color: $santas-grey;
+            text-transform: lowercase;
+          }
+        }
+        .position {
+          padding-bottom: 24px;
+          margin-top: 0;
+          line-height: 16px;
+          font-size: 13px;
+          font-weight: 400;
+          color: $gun-powder;
+        }
+      }
+    }
+  }
+}
