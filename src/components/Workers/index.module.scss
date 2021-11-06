@@ -6,6 +6,21 @@
   overflow-y: scroll;
   scrollbar-color: $white $white;
   scrollbar-width: thin;
+  > div {
+    .hr_line {
+      margin: 28px 24px 32px 24px;
+      color: $ghost;
+      font-family: "Inter";
+      font-size: 15px;
+      font-weight: 500;
+      &::before {
+        background-position: right 70px top 50%;
+      }
+      &::after {
+        background-position: left 70px top 50%;
+      }
+    }
+  }
 
   > div:last-child {
     margin-bottom: 12px;
