@@ -9,25 +9,28 @@
     padding-right: 16px;
     padding-bottom: 2px;
     border-bottom: 0.33px solid $ghost;
-    a {
-      font-family: "Inter";
-      padding: 7px 12px;
-      font-weight: 500;
+    > a {
+      display: inline-block;
+      padding: 7px 6px;
+      margin-left: 6px;
+      margin-right: 6px;
       line-height: 20px;
+      font-family: "Inter";
       font-size: 15px;
+      font-weight: 500;
       color: $santas-grey;
       opacity: 1;
+      &.first_letter_lower::first-letter {
+        text-transform: lowercase;
+      }
+      &:global(.active) {
+        color: $black-russian;
+        font-weight: 600;
+        border-color: $han-purple;
+      }
+    }
+    a:active {
+      border-color: transparent;
     }
   }
-}
-:global(.ui.secondary.pointing.menu > a.active.item) {
-  color: $black-russian !important;
-  font-weight: 600 !important;
-  border-color: $han-purple !important;
-}
-:global(.ui.secondary.pointing.menu > a.item:active) {
-  border-color: rgba(89, 68, 158, 0.6) !important;
-}
-:global(.ui.secondary.pointing.menu > a.item:hover) {
-  font-weight: 600 !important;
 }

@@ -2,7 +2,8 @@ import SearchBar from "../SearchBar";
 import DepartmentsTab from "../DepartmentsTab";
 
 function TopAppBar({
-  selectedDepartment,
+  isLoading,
+  selectedDepId,
   handleDepartmentChange,
   checkedSortStrategy,
   handleSortByCange,
@@ -14,7 +15,8 @@ function TopAppBar({
         handleSortByCange={handleSortByCange}
       />
       <DepartmentsTab
-        selectedDepartment={selectedDepartment}
+        isLoading={isLoading}
+        selectedDepId={selectedDepId}
         handleDepartmentChange={handleDepartmentChange}
       />
     </>
