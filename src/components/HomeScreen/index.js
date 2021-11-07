@@ -12,7 +12,7 @@ const initialHomeState = {
   workersList: null,
   searchTherm: "",
   sortBy: SORT_BY[0].value,
-  selectedDepartment: DEPARTMENTS[0].name,
+  selectedDepId: DEPARTMENTS[0].id,
 };
 
 function HomeScreen() {
@@ -42,16 +42,17 @@ function HomeScreen() {
   }, [workersList]);
 
   // update each worker's 'isInSelectedDep' property depending on selected department
-  const handleDepartmentChange = (department) => {
-    const isAllSelected = department === initialHomeState.selectedDepartment;
+  const handleDepartmentChange = (depId) => {
+    const isAllSelected = depId === initialHomeState.selectedDepId;
+
     const updatedList = homeState.workersList.map((worker) => ({
       ...worker,
-      isInSelectedDep: isAllSelected || worker.department === department,
+      isInSelectedDep: isAllSelected || worker.department === depId,
     }));
     setHomeState({
       ...homeState,
       workersList: updatedList,
-      selectedDepartment: department,
+      selectedDepId: depId,
     });
   };
 
@@ -73,8 +74,10 @@ function HomeScreen() {
   return (
     <>
       <TopAppBar
-        selectedDepartment={homeState.selectedDepartment}
+        isLoading={isLoading}
+        selectedDepId={homeState.selectedDepId}
         handleDepartmentChange={handleDepartmentChange}
+        //
         checkedSortStrategy={homeState.sortBy}
         handleSortByCange={handleSortByCange}
       />
