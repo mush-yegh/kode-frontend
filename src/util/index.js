@@ -10,7 +10,7 @@ import {
   differenceInYears,
 } from "date-fns";
 import ru from "date-fns/locale/ru";
-import { SORT_BY, MONTH_SYMBOLS_COUNT } from "../constants";
+import { SORT_BY, MONTH_SYMBOLS_COUNT, INTL_CODE } from "../constants";
 
 const formatDate = (d) => {
   return format(new Date(d), "d MMMM yyyy", { locale: ru });
@@ -86,10 +86,9 @@ export const compareByClosestBirthday = (
 export const formatPhoneNumber = (n) => {
   const match = n.replace(/\D/g, "").match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/);
   if (match) {
-    const intlCode = "+7 ";
     return [
-      intlCode,
-      "(",
+      INTL_CODE,
+      " (",
       match[1],
       ") ",
       match[2],

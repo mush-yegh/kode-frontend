@@ -70,3 +70,5 @@ export const ROUTES = {
   home: { pathname: "/", class_name: "home_screen" },
   profile: { pathname: "/profile", class_name: "profile" },
 };
+
+export const INTL_CODE = "+7";
