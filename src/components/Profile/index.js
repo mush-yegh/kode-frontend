@@ -1,5 +1,4 @@
-import { Redirect } from "react-router-dom";
-import { Link, useLocation } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import WorkerMainInfo from "../Worker/WorkerMainInfo";
 import { formatAge, formatPhoneNumber } from "./../../util";
 import { ROUTES, INTL_CODE } from "./../../constants";
@@ -12,17 +11,16 @@ const handlePhoneClick = (phoneNum) => {
 };
 
 function Profile() {
-  const location = useLocation();
-
-  const { state } = location;
-  const isFromHome = state && state.from === ROUTES.home.pathname;
+  const history = useHistory();
+  const { state } = history.location;
+  const isFromHome = state.from === ROUTES.home.pathname;
 
   if (!isFromHome) {
     return (
       <Redirect
         to={{
           pathname: ROUTES.home.pathname,
-          state: { from: "", worker: null },
+          state: null,
         }}
       />
     );
@@ -38,6 +36,7 @@ function Profile() {
             to={{
               pathname: ROUTES.home.pathname,
               state: {
+                ...state,
                 from: ROUTES.profile.pathname,
               },
             }}

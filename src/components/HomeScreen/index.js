@@ -1,100 +1,59 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import { fetchWorkersList } from "../../redux/ducks/workers";
-import { DEPARTMENTS, ERROR_TYPE } from "../../constants";
+import {
+  fetchWorkers,
+  updateDepartment,
+  updateSortOrder,
+} from "../../redux/ducks/workers";
+import { ERROR_TYPE, SORT_BY } from "../../constants";
 import TopAppBar from "../TopAppBar";
 import Workers from "../Workers";
 import Error from "./../Error";
-import { compareByFullName, compareByClosestBirthday } from "../../util";
-import { SORT_BY } from "./../../constants";
-
-const initialHomeState = {
-  workersList: null,
-  searchTherm: "",
-  sortBy: SORT_BY[0].value,
-  selectedDepId: DEPARTMENTS[0].id,
-};
 
 function HomeScreen() {
   const dispatch = useDispatch();
 
-  const { workersList, isLoading, error } = useSelector(
+  // request data
+  useEffect(() => {
+    dispatch(fetchWorkers());
+  }, [dispatch]);
+
+  const { workers, isLoading, error, filters, hasVisibleData } = useSelector(
     (state) => state.workers,
     shallowEqual
   );
 
-  // request data
-  useEffect(() => {
-    dispatch(fetchWorkersList());
-  }, [dispatch]);
-
-  const [homeState, setHomeState] = useState(initialHomeState);
-
-  // update local state when data successfully retrieved
-  useEffect(() => {
-    workersList &&
-      setHomeState((prevState) => {
-        return {
-          ...prevState,
-          workersList,
-        };
-      });
-  }, [workersList]);
-
-  // update each worker's 'isInSelectedDep' property depending on selected department
   const handleDepartmentChange = (depId) => {
-    const isAllSelected = depId === initialHomeState.selectedDepId;
-
-    const updatedList = homeState.workersList.map((worker) => ({
-      ...worker,
-      isInSelectedDep: isAllSelected || worker.department === depId,
-    }));
-    setHomeState({
-      ...homeState,
-      workersList: updatedList,
-      selectedDepId: depId,
-    });
+    dispatch(updateDepartment(depId));
   };
 
-  const handleSortByCange = (value) => {
-    const comparer =
-      value === SORT_BY[0].value ? compareByFullName : compareByClosestBirthday;
-    const updatedList = homeState.workersList.sort(comparer);
-    setHomeState({
-      ...homeState,
-      sortBy: value,
-      workersList: updatedList,
-    });
+  const handleSortByCange = (sortOrder) => {
+    dispatch(updateSortOrder(sortOrder));
   };
 
-  const isWorkersListInitialized = homeState && homeState.workersList;
-  const hasMatchingData =
-    isWorkersListInitialized &&
-    homeState.workersList.some((w) => w.isInSelectedDep); // Add later || isInSearch
   return (
     <>
       <TopAppBar
         isLoading={isLoading}
-        selectedDepId={homeState.selectedDepId}
+        selectedDepId={filters.selectedDepId}
         handleDepartmentChange={handleDepartmentChange}
         //
-        checkedSortStrategy={homeState.sortBy}
+        checkedSortStrategy={filters.sortBy}
         handleSortByCange={handleSortByCange}
       />
 
       {/* {isLoading&&<Placeholder/>} */}
 
-      {isWorkersListInitialized && hasMatchingData && (
+      {workers && hasVisibleData && (
         <Workers
-          workers={homeState.workersList}
-          isBirthDateVisible={homeState.sortBy === SORT_BY[1].value}
+          workers={workers}
+          isBirthDateVisible={filters.sortBy === SORT_BY[1].value}
+          // workers={workers}
         />
       )}
 
       {/* if no matching data exists */}
-      {isWorkersListInitialized && !hasMatchingData && (
-        <Error page={ERROR_TYPE.empty} />
-      )}
+      {!hasVisibleData && <Error page={ERROR_TYPE.empty} />}
 
       {/* server error */}
       {error && <Error page={ERROR_TYPE.critical} />}

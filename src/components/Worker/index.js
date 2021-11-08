@@ -5,22 +5,21 @@ import { ROUTES } from "../../constants";
 import styles from "./index.module.scss";
 
 const Worker = ({ worker }) => {
-  const { id, isBirthDateVisible, displayBirthdate } = worker;
+  const { id, isBirthDateVisible, displayBirthdate, ...rest } = worker;
+
+  const toProfile = {
+    pathname: ROUTES.profile.pathname,
+    state: {
+      from: ROUTES.home.pathname,
+      worker,
+    },
+  };
 
   return (
     <div key={id} id={styles.worker}>
-      <Link
-        to={{
-          pathname: ROUTES.profile.pathname,
-          state: {
-            from: ROUTES.home.pathname,
-            worker,
-          },
-        }}
-      >
-        <WorkerMainInfo worker={worker} />
+      <Link to={toProfile}>
+        <WorkerMainInfo worker={rest} />
       </Link>
-
       {isBirthDateVisible && (
         <div className={styles.birthdate}>{cutBirthDate(displayBirthdate)}</div>
       )}
