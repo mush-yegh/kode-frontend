@@ -10,9 +10,9 @@ import {
   differenceInYears,
 } from "date-fns";
 import ru from "date-fns/locale/ru";
-import { SORT_BY, MONTH_SYMBOLS_COUNT, INTL_CODE } from "../constants";
+import { MONTH_SYMBOLS_COUNT, INTL_CODE } from "../constants";
 
-const formatDate = (d) => {
+export const formatDate = (d) => {
   return format(new Date(d), "d MMMM yyyy", { locale: ru });
 };
 
@@ -28,17 +28,6 @@ export const formatAge = (d) => {
 
 export const cutBirthDate = (date) =>
   date.substring(0, date.indexOf(" ") + MONTH_SYMBOLS_COUNT + 1);
-
-export const prepareWorkersList = (workersList) => {
-  return workersList
-    .map((w) => ({
-      ...w,
-      isInSearch: true,
-      isInSelectedDep: true,
-      displayBirthdate: formatDate(w.birthday),
-    }))
-    .sort(SORT_BY[0].comparer);
-};
 
 export const compareByFullName = (a, b) => {
   const { firstName: aFirstName, lastName: aLastName } = a;
