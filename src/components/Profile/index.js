@@ -13,9 +13,10 @@ const handlePhoneClick = (phoneNum) => {
 function Profile() {
   const history = useHistory();
   const { state } = history.location;
-  const isFromHome = state.from === ROUTES.home.pathname;
+  const isFromHome = state && state.from === ROUTES.home.pathname;
 
-  if (!isFromHome) {
+  // action is "POP" when user refreshes page
+  if (!isFromHome || history.action === "POP") {
     return (
       <Redirect
         to={{
@@ -37,7 +38,7 @@ function Profile() {
               pathname: ROUTES.home.pathname,
               state: {
                 ...state,
-                from: ROUTES.profile.pathname,
+                isFromProfile: true,
               },
             }}
           >

@@ -1,10 +1,5 @@
-import { useEffect } from "react";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import {
-  fetchWorkers,
-  updateDepartment,
-  updateSortOrder,
-} from "../../redux/ducks/workers";
+import { updateDepartment, updateSortOrder } from "../../redux/ducks/workers";
 import { ERROR_TYPE, SORT_BY } from "../../constants";
 import TopAppBar from "../TopAppBar";
 import Workers from "../Workers";
@@ -12,11 +7,6 @@ import Error from "./../Error";
 
 function HomeScreen() {
   const dispatch = useDispatch();
-
-  // request data
-  useEffect(() => {
-    dispatch(fetchWorkers());
-  }, [dispatch]);
 
   const { workers, isLoading, error, filters, hasVisibleData } = useSelector(
     (state) => state.workers,
@@ -48,7 +38,6 @@ function HomeScreen() {
         <Workers
           workers={workers}
           isBirthDateVisible={filters.sortBy === SORT_BY[1].value}
-          // workers={workers}
         />
       )}
 
