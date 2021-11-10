@@ -1,21 +1,10 @@
-import axios from "axios";
-import { API_URL } from "../../config";
+import { axiosInstance } from "../../config";
 import {
   formatDate,
   compareByFullName,
   compareByClosestBirthday,
 } from "../../util";
 import { DEPARTMENTS, SORT_BY } from "../../constants";
-
-const options = {
-  method: "GET",
-  url: `${API_URL}/users`,
-  headers: {
-    "Content-Type": "application/json",
-    Prefer: "code=200, dynamic=true",
-    // Prefer: "code=500, dynamic=true",
-  },
-};
 
 export const WORKERS_REQUEST = "kode/HOME_SCREEN/WORKERS_REQUEST";
 export const WORKERS_RESPONSE = "kode/HOME_SCREEN/WORKERS_RESPONSE";
@@ -124,8 +113,8 @@ const prepareWorkers = (workers) => {
 export const fetchWorkers = () => {
   return (dispatch) => {
     dispatch(workersRequest());
-    axios
-      .request(options)
+    axiosInstance
+      .get(`/users`)
       .then(({ data }) => {
         const preparedData = prepareWorkers(data.items);
         dispatch(workersRequestFulfilled(preparedData));
