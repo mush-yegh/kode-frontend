@@ -51,8 +51,8 @@ export const ERROR_SCREEN_DATA = {
 };
 
 export const ERROR_TYPE = {
-  critical: "criticalError",
-  empty: "emptySearch",
+  CRITICAL: "criticalError",
+  EMPTY: "emptySearch",
 };
 
 export const SORT_BY = [
