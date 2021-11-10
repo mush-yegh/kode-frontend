@@ -1,6 +1,9 @@
 import criticalError from "./../styles/svg/criticalError.png";
 import searchError from "./../styles/svg/searchError.png";
-import { compareByFullName, compareByClosestBirthday } from "../util";
+import {
+  compareByFullName,
+  compareByClosestBirthday,
+} from "../helpers/comparator";
 
 export const CONFIG = {
   MODE: {

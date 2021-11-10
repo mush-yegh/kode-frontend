@@ -3,7 +3,7 @@ import { Redirect, Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setSelectedItemId } from "../../redux/ducks/profile";
 import WorkerMainInfo from "../Worker/WorkerMainInfo";
-import { formatAge, formatPhoneNumber } from "./../../util";
+import { formatAge, formatPhoneNumber } from "../../helpers/formatter";
 import { ROUTES, INTL_CODE } from "./../../constants";
 import { Divider } from "semantic-ui-react";
 import styles from "./index.module.scss";

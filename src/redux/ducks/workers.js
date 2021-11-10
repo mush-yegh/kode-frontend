@@ -1,9 +1,9 @@
 import { axiosInstance } from "../../config";
+import { formatDate } from "../../helpers/formatter";
 import {
-  formatDate,
   compareByFullName,
   compareByClosestBirthday,
-} from "../../util";
+} from "../../helpers/comparator";
 import { DEPARTMENTS, SORT_BY } from "../../constants";
 
 const WORKERS_REQUEST = "kode/SITE_WRAPPER/WORKERS_REQUEST";
