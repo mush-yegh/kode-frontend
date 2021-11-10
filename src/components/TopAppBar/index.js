@@ -7,12 +7,17 @@ function TopAppBar({
   handleDepartmentChange,
   checkedSortStrategy,
   handleSortByCange,
+  handleSearchCange,
+  searchKey,
 }) {
   return (
     <>
       <SearchBar
         checkedSortStrategy={checkedSortStrategy}
         handleSortByCange={handleSortByCange}
+        //
+        handleSearchCange={handleSearchCange}
+        searchKey={searchKey}
       />
       <DepartmentsTab
         isLoading={isLoading}
