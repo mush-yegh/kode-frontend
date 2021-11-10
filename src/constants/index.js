@@ -2,9 +2,15 @@ import criticalError from "./../styles/svg/criticalError.png";
 import searchError from "./../styles/svg/searchError.png";
 import { compareByFullName, compareByClosestBirthday } from "../util";
 
-export const MODE = {
-  dev: "development",
-  prod: "production",
+export const CONFIG = {
+  MODE: {
+    DEV: "development",
+    PROD: "production",
+  },
+  HEADERS: {
+    SUCCESS: { Prefer: "code=200, dynamic=true" },
+    ERROR: { Prefer: "code=500, dynamic=true" },
+  },
 };
 
 export const DEPARTMENTS = [
