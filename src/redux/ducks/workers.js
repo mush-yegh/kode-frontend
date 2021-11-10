@@ -6,35 +6,35 @@ import {
 } from "../../util";
 import { DEPARTMENTS, SORT_BY } from "../../constants";
 
-export const WORKERS_REQUEST = "kode/HOME_SCREEN/WORKERS_REQUEST";
-export const WORKERS_RESPONSE = "kode/HOME_SCREEN/WORKERS_RESPONSE";
-export const WORKERS_ERROR = "kode/HOME_SCREEN/WORKERS_ERROR";
-export const DEPARTMENT_UPDATE = "kode/HOME_SCREEN/DEPARTMENT_UPDATE";
-export const SORT_ORDER_UPDATE = "kode/HOME_SCREEN/SORT_ORDER_UPDATE";
-export const SEARCH_QUERY_UPDATE = "kode/HOME_SCREEN/SEARCH_QUERY_UPDATE";
+const WORKERS_REQUEST = "kode/SITE_WRAPPER/WORKERS_REQUEST";
+const WORKERS_RESPONSE = "kode/HOME_SCREEN/WORKERS_RESPONSE";
+const WORKERS_ERROR = "kode/HOME_SCREEN/WORKERS_ERROR";
+const DEPARTMENT_UPDATE = "kode/HOME_SCREEN/DEPARTMENT_UPDATE";
+const SORT_ORDER_UPDATE = "kode/HOME_SCREEN/SORT_ORDER_UPDATE";
+const SEARCH_QUERY_UPDATE = "kode/HOME_SCREEN/SEARCH_QUERY_UPDATE";
 
-export const workersRequest = () => ({
+const workersRequest = () => ({
   type: WORKERS_REQUEST,
 });
 
-export const workersRequestFulfilled = (payload) => ({
+const workersRequestFulfilled = (payload) => ({
   type: WORKERS_RESPONSE,
   payload,
 });
 
-export const workersRequestFailed = (payload) => ({
+const workersRequestFailed = (payload) => ({
   type: WORKERS_ERROR,
   payload: payload,
 });
-export const departmentUpdate = (payload) => ({
+const departmentUpdate = (payload) => ({
   type: DEPARTMENT_UPDATE,
   payload: payload,
 });
-export const sortOrderUpdate = (payload) => ({
+const sortOrderUpdate = (payload) => ({
   type: SORT_ORDER_UPDATE,
   payload: payload,
 });
-export const searchQueryUpdate = (payload) => ({
+const searchQueryUpdate = (payload) => ({
   type: SEARCH_QUERY_UPDATE,
   payload: payload,
 });
@@ -94,7 +94,9 @@ export default function reducer(state = initialState, action) {
       return state;
   }
 }
-
+// Loop through received data,
+// append 4 additional properties(without modifying the original data)
+// and sort by default ordering
 const prepareWorkers = (workers) => {
   return workers
     .map((w) => ({
@@ -107,6 +109,7 @@ const prepareWorkers = (workers) => {
     .sort(SORT_BY[0].comparer);
 };
 
+// api call
 export const fetchWorkers = () => {
   return (dispatch) => {
     dispatch(workersRequest());
@@ -122,6 +125,9 @@ export const fetchWorkers = () => {
   };
 };
 
+// Initially selected department is 'ALL'
+// when selected department is changing, loop through the whole workers
+// and update the value of 'isInSelectedDep' property(DO NOT REMOVE the worker, just update the prop value )
 export const updateDepartment = (depId) => {
   return (dispatch, getState) => {
     const { workers, filters } = getState().workers;
@@ -166,14 +172,18 @@ const checkForMatch = (searchKey, fullName, nick) => {
   return isNickMatches || fullName.toLowerCase().includes(searchKeyLower);
 };
 
+// Update the value of 'isInSearch' property
 export const updateSearchQuery = (searchKey) => {
   return (dispatch, getState) => {
     const { workers, filters } = getState().workers;
+    const isSerchInputEmpty = searchKey === "";
 
     // update each worker's 'isInSearch' property depending on search text
     const updatedWorkers = workers.map((worker) => ({
       ...worker,
-      isInSearch: checkForMatch(searchKey, worker.fullName, worker.userTag),
+      isInSearch:
+        isSerchInputEmpty ||
+        checkForMatch(searchKey, worker.fullName, worker.userTag),
     }));
 
     dispatch(
