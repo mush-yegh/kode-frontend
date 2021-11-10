@@ -1,11 +1,28 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import cs from "classnames";
+import _ from "lodash";
 import { Button, Icon, Input, Modal, Radio } from "semantic-ui-react";
 import { SORT_BY } from "../../constants";
 import styles from "./index.module.scss";
 
-function SearchBar({ checkedSortStrategy, handleSortByCange }) {
+function SearchBar({
+  checkedSortStrategy,
+  handleSortByCange,
+  handleSearchCange,
+  searchKey,
+}) {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState(searchKey);
+
+  const debouncedHandleSearchChange = useMemo(() => {
+    return _.debounce(handleSearchCange, 300);
+  }, [handleSearchCange]);
+
+  useEffect(() => {
+    if (searchText !== searchKey) {
+      debouncedHandleSearchChange(searchText);
+    }
+  }, [searchText, searchKey, debouncedHandleSearchChange]);
 
   return (
     <div id={styles.search}>
@@ -17,7 +34,8 @@ function SearchBar({ checkedSortStrategy, handleSortByCange }) {
         className={styles.search_input}
         type="text"
         name="search"
-        onChange={(e, data) => console.log("data = " + data.value)}
+        value={searchText}
+        onChange={(e, data) => setSearchText(data.value)}
         placeholder="Введи имя, тег, почту..."
       >
         <input />

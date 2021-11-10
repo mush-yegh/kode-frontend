@@ -1,5 +1,9 @@
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import { updateDepartment, updateSortOrder } from "../../redux/ducks/workers";
+import {
+  updateDepartment,
+  updateSortOrder,
+  updateSearchQuery,
+} from "../../redux/ducks/workers";
 import { ERROR_TYPE, SORT_BY } from "../../constants";
 import TopAppBar from "../TopAppBar";
 import Workers from "../Workers";
@@ -21,6 +25,10 @@ function HomeScreen() {
     dispatch(updateSortOrder(sortOrder));
   };
 
+  const handleSearchCange = (searchKey) => {
+    dispatch(updateSearchQuery(searchKey));
+  };
+
   return (
     <>
       <TopAppBar
@@ -30,6 +38,9 @@ function HomeScreen() {
         //
         checkedSortStrategy={filters.sortBy}
         handleSortByCange={handleSortByCange}
+        //
+        handleSearchCange={handleSearchCange}
+        searchKey={filters.searchKey}
       />
 
       {/* {isLoading&&<Placeholder/>} */}

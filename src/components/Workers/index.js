@@ -40,7 +40,7 @@ const Workers = ({ workers, isBirthDateVisible }) => {
   return (
     <div id={styles.workers}>
       {workers
-        .filter((worker) => worker.isInSelectedDep)
+        .filter((worker) => worker.isInSelectedDep && worker.isInSearch)
         .map((worker) => {
           return (
             <div
