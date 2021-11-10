@@ -3,7 +3,7 @@ import { ROUTES } from "./../../../constants";
 import { Image } from "semantic-ui-react";
 import styles from "./index.module.scss";
 
-const WorkerMainInfo = ({ worker, class_name = ROUTES.home.class_name }) => {
+const WorkerMainInfo = ({ worker, class_name = ROUTES.HOME.class_name }) => {
   const { avatarUrl, fullName, userTag, position } = worker;
 
   return (

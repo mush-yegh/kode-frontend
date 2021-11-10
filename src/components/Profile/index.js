@@ -17,7 +17,7 @@ function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { state } = history.location;
-  const isFromHome = state && state.from === ROUTES.home.pathname;
+  const isFromHome = state && state.from === ROUTES.HOME.pathname;
 
   useEffect(() => {
     isFromHome && dispatch(setSelectedItemId(state.worker.id));
@@ -28,7 +28,7 @@ function Profile() {
     return (
       <Redirect
         to={{
-          pathname: ROUTES.home.pathname,
+          pathname: ROUTES.HOME.pathname,
           state: null,
         }}
       />
@@ -43,7 +43,7 @@ function Profile() {
         <div className={styles.back_button_row}>
           <Link
             to={{
-              pathname: ROUTES.home.pathname,
+              pathname: ROUTES.HOME.pathname,
               state: {
                 ...state,
                 isFromProfile: true,
@@ -55,7 +55,7 @@ function Profile() {
         </div>
         <WorkerMainInfo
           worker={worker}
-          class_name={ROUTES.profile.class_name}
+          class_name={ROUTES.PROFILE.class_name}
         />
       </div>
       <div className={styles.birthday_row}>

@@ -1,11 +1,9 @@
-import { ERROR_SCREEN_DATA } from "./../../constants";
+import { ERROR_SCREEN_DATA, ERROR_TYPE } from "./../../constants";
 import styles from "./index.module.scss";
 import { Image } from "semantic-ui-react";
 
-const p = ["criticalError", "emptySearch"];
-
-const Error = ({ page = p[0] }) => {
-  const { icon, message, subMessage, suggestion } = ERROR_SCREEN_DATA[page];
+const Error = ({ type = ERROR_TYPE.CRITICAL }) => {
+  const { icon, message, subMessage, suggestion } = ERROR_SCREEN_DATA[type];
   return (
     <div id={styles.error}>
       <div className={styles.content}>
@@ -16,7 +14,7 @@ const Error = ({ page = p[0] }) => {
         <div className={styles.subMessage}>{subMessage}</div>
         {suggestion && (
           <div className={styles.suggestion}>
-            <span onClick={suggestion.onclick}>{suggestion.text}</span>
+            <span onClick={suggestion.action}>{suggestion.text}</span>
           </div>
         )}
       </div>

@@ -8,9 +8,9 @@ const Worker = ({ worker, isBirthDayVisible }) => {
   const { id, displayBirthdate, ...rest } = worker;
 
   const toProfile = {
-    pathname: ROUTES.profile.pathname,
+    pathname: ROUTES.PROFILE.pathname,
     state: {
-      from: ROUTES.home.pathname,
+      from: ROUTES.HOME.pathname,
       worker,
     },
   };
