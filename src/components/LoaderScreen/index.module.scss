@@ -1,0 +1,53 @@
+@import "../../styles/colors";
+
+#loader {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 140px);
+  min-height: 130px;
+  padding-top: 2px;
+  overflow: hidden;
+  .row {
+    display: flex;
+    align-items: center;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    div:not(.two_lines) {
+      border-radius: 50px;
+      background: linear-gradient(90deg, #f3f3f6 0%, #fafafa 100%);
+      animation-duration: 1.25s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: placeHolderShimmer;
+      animation-timing-function: linear;
+      background-size: 1200px 100%;
+    }
+    > div.avatar {
+      width: 72px;
+      height: 72px;
+      margin-right: 16px;
+      border-radius: 50px;
+    }
+    > div.two_lines {
+      width: 144px;
+      height: 30px;
+      > div.first_line {
+        height: 16px;
+        margin-bottom: 6px;
+      }
+      > div.second_line {
+        width: 80px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}

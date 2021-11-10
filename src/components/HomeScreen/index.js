@@ -6,6 +6,7 @@ import {
 } from "../../redux/ducks/workers";
 import { ERROR_TYPE, SORT_BY } from "../../constants";
 import TopAppBar from "../TopAppBar";
+import LoaderScreen from "../LoaderScreen";
 import Workers from "../Workers";
 import Error from "./../Error";
 
@@ -32,7 +33,7 @@ function HomeScreen() {
   let content = null;
 
   if (isLoading) {
-    content = "LOADING";
+    content = <LoaderScreen />;
   } else if (error) {
     content = <Error page={ERROR_TYPE.CRITICAL} />;
   } else {
