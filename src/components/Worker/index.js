@@ -4,8 +4,8 @@ import { cutBirthDate } from "../../util";
 import { ROUTES } from "../../constants";
 import styles from "./index.module.scss";
 
-const Worker = ({ worker }) => {
-  const { id, isBirthDateVisible, displayBirthdate, ...rest } = worker;
+const Worker = ({ worker, isBirthDayVisible }) => {
+  const { id, displayBirthdate, ...rest } = worker;
 
   const toProfile = {
     pathname: ROUTES.profile.pathname,
@@ -20,7 +20,7 @@ const Worker = ({ worker }) => {
       <Link to={toProfile}>
         <WorkerMainInfo worker={rest} />
       </Link>
-      {isBirthDateVisible && (
+      {isBirthDayVisible && (
         <div className={styles.birthdate}>{cutBirthDate(displayBirthdate)}</div>
       )}
     </div>

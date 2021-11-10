@@ -48,7 +48,6 @@ const initialState = {
     sortBy: SORT_BY[0].value,
     selectedDepId: DEPARTMENTS[0].id,
   },
-  hasVisibleData: true,
 };
 
 export default function reducer(state = initialState, action) {
@@ -77,7 +76,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         workers: action.payload.workers,
         filters: action.payload.filters,
-        hasVisibleData: action.payload.hasVisibleData,
       };
     case SORT_ORDER_UPDATE:
       return {
@@ -90,7 +88,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         workers: action.payload.workers,
         filters: action.payload.filters,
-        hasVisibleData: action.payload.hasVisibleData,
       };
 
     default:
@@ -136,15 +133,10 @@ export const updateDepartment = (depId) => {
       isInSelectedDep: isAllSelected || worker.department === depId,
     }));
 
-    const hasVisibleData = updatedWorkers.some(
-      (w) => w.isInSelectedDep && w.isInSearch
-    );
-
     dispatch(
       departmentUpdate({
         workers: updatedWorkers,
         filters: { ...filters, selectedDepId: depId },
-        hasVisibleData: hasVisibleData,
       })
     );
   };
@@ -183,15 +175,11 @@ export const updateSearchQuery = (searchKey) => {
       ...worker,
       isInSearch: checkForMatch(searchKey, worker.fullName, worker.userTag),
     }));
-    const hasVisibleData = updatedWorkers.some(
-      (w) => w.isInSelectedDep && w.isInSearch
-    );
 
     dispatch(
       searchQueryUpdate({
         workers: updatedWorkers,
         filters: { ...filters, searchKey },
-        hasVisibleData: hasVisibleData,
       })
     );
   };
