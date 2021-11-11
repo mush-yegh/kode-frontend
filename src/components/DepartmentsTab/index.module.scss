@@ -34,3 +34,25 @@
     }
   }
 }
+
+@media screen and (max-width: 480px) {
+  #departmentsTab {
+    margin-top: 8px;
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+      > a {
+        flex: 1 0 30%;
+        text-align: center;
+        border-color: transparent;
+        &:global(.active) {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}

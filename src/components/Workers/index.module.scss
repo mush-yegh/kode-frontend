@@ -36,3 +36,10 @@
     box-shadow: none;
   }
 }
+
+@media screen and (max-width: 480px) {
+  #workers {
+    padding-top: 5px;
+    height: calc(100% + 90px);
+  }
+}

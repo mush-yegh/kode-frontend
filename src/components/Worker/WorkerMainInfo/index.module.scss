@@ -81,3 +81,23 @@
     }
   }
 }
+
+@media screen and (max-width: 480px) {
+  #worker_info {
+    .main_info {
+      &.home_screen {
+        .name_and_position {
+          margin-left: 4px;
+          .name_nick {
+            .full_name {
+              font-size: 14px;
+            }
+            .nick {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
