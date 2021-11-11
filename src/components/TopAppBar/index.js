@@ -3,26 +3,27 @@ import DepartmentsTab from "../DepartmentsTab";
 
 function TopAppBar({
   isLoading,
-  selectedDepId,
-  handleDepartmentChange,
-  checkedSortStrategy,
-  handleSortByCange,
-  handleSearchCange,
-  searchKey,
+  searchBarHandlers,
+  departmentTabsHandler,
+  appliedFilters,
 }) {
+  const {
+    searchKey,
+    sortBy: checkedSortStrategy,
+    selectedDepId,
+  } = appliedFilters;
   return (
     <>
       <SearchBar
-        checkedSortStrategy={checkedSortStrategy}
-        handleSortByCange={handleSortByCange}
-        //
-        handleSearchCange={handleSearchCange}
+        handleSearchCange={searchBarHandlers.handleSearchCange}
         searchKey={searchKey}
+        checkedSortStrategy={checkedSortStrategy}
+        handleSortChange={searchBarHandlers.handleSortChange}
       />
       <DepartmentsTab
         isLoading={isLoading}
         selectedDepId={selectedDepId}
-        handleDepartmentChange={handleDepartmentChange}
+        handleDepartmentChange={departmentTabsHandler.handleDepartmentChange}
       />
     </>
   );

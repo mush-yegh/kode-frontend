@@ -22,7 +22,7 @@ function HomeScreen() {
     dispatch(updateDepartment(depId));
   };
 
-  const handleSortByCange = (sortOrder) => {
+  const handleSortChange = (sortOrder) => {
     dispatch(updateSortOrder(sortOrder));
   };
 
@@ -51,19 +51,13 @@ function HomeScreen() {
       (content = <Error type={ERROR_TYPE.EMPTY} />)
     );
   }
-
   return (
     <>
       <TopAppBar
+        searchBarHandlers={{ handleSearchCange, handleSortChange }}
+        departmentsTabsHandler={{ handleDepartmentChange }}
+        appliedFilters={filters}
         isLoading={isLoading}
-        selectedDepId={filters.selectedDepId}
-        handleDepartmentChange={handleDepartmentChange}
-        //
-        checkedSortStrategy={filters.sortBy}
-        handleSortByCange={handleSortByCange}
-        //
-        searchKey={filters.searchKey}
-        handleSearchCange={handleSearchCange}
       />
       {content}
     </>
