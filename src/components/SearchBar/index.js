@@ -1,17 +1,17 @@
 import { useState, useMemo, useEffect } from "react";
 import cs from "classnames";
 import _ from "lodash";
-import { Button, Icon, Input, Modal, Radio } from "semantic-ui-react";
-import { SORT_BY } from "../../constants";
+import SortModal from "./SortModal";
+import { Icon, Input } from "semantic-ui-react";
 import styles from "./index.module.scss";
 
 function SearchBar({
   checkedSortStrategy,
-  handleSortByCange,
+  handleSortChange,
   handleSearchCange,
   searchKey,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchText, setSearchText] = useState(searchKey);
 
   const debouncedHandleSearchChange = useMemo(() => {
@@ -40,55 +40,12 @@ function SearchBar({
       >
         <input />
         <Icon className={cs(styles.searchIcon, styles.icon)} />
-
-        <Modal
-          className={styles.modal}
-          size={"mini"}
-          onClose={() => setIsOpen(false)}
-          onOpen={() => setIsOpen(true)}
-          open={isOpen}
-          trigger={
-            <Button className={styles.filter_button}>
-              <Icon
-                className={cs({
-                  [styles.icon]: true,
-                  [styles.sortIcon]: checkedSortStrategy === SORT_BY[0].value,
-                  [styles.sortIconPurple]:
-                    checkedSortStrategy === SORT_BY[1].value,
-                })}
-              />
-            </Button>
-          }
-        >
-          <Modal.Header>
-            <div>
-              <span>Сортировка</span>
-              <span onClick={() => setIsOpen(false)}></span>
-            </div>
-          </Modal.Header>
-          <Modal.Content>
-            {SORT_BY.map((item) => {
-              const { value, name, label } = item;
-              return (
-                <div key={value} className={styles.radio_row}>
-                  <Radio
-                    label={label}
-                    name={name}
-                    value={value}
-                    checked={checkedSortStrategy === value}
-                    className={cs({
-                      [styles.checked_radio]: checkedSortStrategy === value,
-                    })}
-                    onChange={(e, { value }) => {
-                      handleSortByCange(value);
-                      setIsOpen(false);
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </Modal.Content>
-        </Modal>
+        <SortModal
+          checkedSortStrategy={checkedSortStrategy}
+          handleSortChange={handleSortChange}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
       </Input>
     </div>
   );
