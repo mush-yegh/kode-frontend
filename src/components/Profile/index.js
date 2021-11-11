@@ -16,23 +16,27 @@ const handlePhoneClick = (phoneNum) => {
 function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const { state } = history.location;
-  const isFromHome = state && state.from === ROUTES.HOME.pathname;
+  const { pathname } = ROUTES.HOME;
+  const isFromHome = state && state.from === pathname;
 
   useEffect(() => {
-    isFromHome && dispatch(setSelectedItemId(state.worker.id));
+    return () => {
+      // on unmount, save current worker id in store if
+      // the cause for leaving current page is not page reload
+      if (history.action !== "REPLACE") {
+        dispatch(setSelectedItemId(state.worker.id));
+      }
+    };
   });
 
-  // action is "POP" when user refreshes page
+  // will be redirected to HOME if
+  // hasn't come by clicking on some worker from HOME or
+  // just typed 'BASE-URL/profile' into the browser address-bar or
+  // being on the profilePage reloads the page
   if (!isFromHome || history.action === "POP") {
-    return (
-      <Redirect
-        to={{
-          pathname: ROUTES.HOME.pathname,
-          state: null,
-        }}
-      />
-    );
+    return <Redirect to={pathname} />;
   }
 
   const { worker } = state;
@@ -41,15 +45,7 @@ function Profile() {
     <div id={styles.profile}>
       <div className={styles.profile_header}>
         <div className={styles.back_button_row}>
-          <Link
-            to={{
-              pathname: ROUTES.HOME.pathname,
-              state: {
-                ...state,
-                isFromProfile: true,
-              },
-            }}
-          >
+          <Link to={pathname}>
             <span className={styles.back_icon}></span>
           </Link>
         </div>
