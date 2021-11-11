@@ -1,6 +1,9 @@
 import criticalError from "./../styles/svg/criticalError.png";
 import searchError from "./../styles/svg/searchError.png";
-import { compareByFullName, compareByClosestBirthday } from "../util";
+import {
+  compareByFullName,
+  compareByClosestBirthday,
+} from "../helpers/comparator";
 
 export const CONFIG = {
   MODE: {
@@ -42,8 +45,7 @@ export const ERROR_SCREEN_DATA = {
     subMessage: "Постараемся быстро починить",
     suggestion: {
       text: "Попробовать снова",
-      //TO DO - change to dispatch getUsers
-      onclick: () => {
+      action: () => {
         window.location.reload(false);
       },
     },
@@ -73,8 +75,8 @@ export const SORT_BY = [
 export const MONTH_SYMBOLS_COUNT = 3;
 
 export const ROUTES = {
-  home: { pathname: "/", class_name: "home_screen" },
-  profile: { pathname: "/profile", class_name: "profile" },
+  HOME: { pathname: "/", class_name: "home_screen" },
+  PROFILE: { pathname: "/profile", class_name: "profile" },
 };
 
 export const INTL_CODE = "+7";

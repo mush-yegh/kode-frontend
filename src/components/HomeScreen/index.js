@@ -35,7 +35,7 @@ function HomeScreen() {
   if (isLoading) {
     content = <LoaderScreen />;
   } else if (error) {
-    content = <Error page={ERROR_TYPE.CRITICAL} />;
+    content = <Error />;
   } else {
     const visibleWorkers = workers.filter(
       (worker) => worker.isInSelectedDep && worker.isInSearch
@@ -48,7 +48,7 @@ function HomeScreen() {
         isLoading={isLoading}
       />
     ) : (
-      (content = <Error page={ERROR_TYPE.EMPTY} />)
+      (content = <Error type={ERROR_TYPE.EMPTY} />)
     );
   }
 

@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import WorkerMainInfo from "./WorkerMainInfo";
-import { cutBirthDate } from "../../util";
 import { ROUTES } from "../../constants";
+import { cutBirthDate } from "../../helpers/formatter";
 import styles from "./index.module.scss";
 
 const Worker = ({ worker, isBirthDayVisible }) => {
   const { id, displayBirthdate, ...rest } = worker;
 
   const toProfile = {
-    pathname: ROUTES.profile.pathname,
+    pathname: ROUTES.PROFILE.pathname,
     state: {
-      from: ROUTES.home.pathname,
+      from: ROUTES.HOME.pathname,
       worker,
     },
   };
