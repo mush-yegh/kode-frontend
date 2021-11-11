@@ -16,3 +16,11 @@
     text-transform: capitalize;
   }
 }
+
+@media screen and (max-width: 480px) {
+  #worker {
+    .birthdate {
+      font-size: 12px;
+    }
+  }
+}

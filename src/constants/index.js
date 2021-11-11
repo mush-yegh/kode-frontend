@@ -60,13 +60,11 @@ export const ERROR_TYPE = {
 export const SORT_BY = [
   {
     value: "alphabetically",
-    name: "sortWorkers",
     label: "По алфавиту",
     comparer: compareByFullName,
   },
   {
     value: "closestBirthday",
-    name: "sortWorkers",
     label: "По дню рождения",
     comparer: compareByClosestBirthday,
   },
