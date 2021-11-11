@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import { setSelectedItemId } from "../../redux/ducks/profile";
+import { resetSelectedItemId } from "../../redux/ducks/profile";
 import { setYear, getYear, isPast, endOfDay } from "date-fns";
 import Worker from "../Worker";
 import { Divider } from "semantic-ui-react";
@@ -28,12 +28,12 @@ const Workers = ({ workers, isBirthDayVisible, isLoading }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (scrollToId) {
+    if (scrollToId && scrollToItem.current) {
       scrollToItem.current.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
-      dispatch(setSelectedItemId(null));
+      dispatch(resetSelectedItemId());
     }
   }, [scrollToId, dispatch]);
 

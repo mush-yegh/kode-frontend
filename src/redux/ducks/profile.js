@@ -1,8 +1,13 @@
-export const SET_ID = "kode/PROFILE/SET_ID";
+const SET_ID = "kode/PROFILE/SET_ID";
+const RESET_ID = "kode/WORKERS/RESET_ID";
 
-export const setId = (payload) => ({
+const setId = (payload) => ({
   type: SET_ID,
   payload: payload,
+});
+
+const resetId = () => ({
+  type: RESET_ID,
 });
 
 const initialState = {
@@ -16,6 +21,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         id: action.payload,
       };
+    case RESET_ID:
+      return {
+        ...state,
+        id: null,
+      };
 
     default:
       return state;
@@ -25,5 +35,11 @@ export default function reducer(state = initialState, action) {
 export const setSelectedItemId = (id) => {
   return (dispatch) => {
     dispatch(setId(id));
+  };
+};
+
+export const resetSelectedItemId = () => {
+  return (dispatch) => {
+    dispatch(resetId());
   };
 };
