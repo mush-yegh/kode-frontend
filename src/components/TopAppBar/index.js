@@ -4,7 +4,7 @@ import DepartmentsTab from "../DepartmentsTab";
 function TopAppBar({
   isLoading,
   searchBarHandlers,
-  departmentTabsHandler,
+  departmentsTabsHandler,
   appliedFilters,
 }) {
   const {
@@ -23,7 +23,7 @@ function TopAppBar({
       <DepartmentsTab
         isLoading={isLoading}
         selectedDepId={selectedDepId}
-        handleDepartmentChange={departmentTabsHandler.handleDepartmentChange}
+        handleDepartmentChange={departmentsTabsHandler.handleDepartmentChange}
       />
     </>
   );
