@@ -105,6 +105,7 @@ const prepareWorkers = (workers) => {
       isInSearch: true,
       isInSelectedDep: true,
       displayBirthdate: formatDate(w.birthday),
+      avatarUrl: `https://avatars.dicebear.com/api/avataaars/${w.firstName}_${w.lastName}.svg`,
     }))
     .sort(SORT_BY[0].comparer);
 };
